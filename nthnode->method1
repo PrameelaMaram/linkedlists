@@ -1,0 +1,66 @@
+#include<stdio.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*first=NULL;
+//int i,n,x,count=0,m,n;
+void main()
+{
+ int i,n,x,count=1,m;
+    struct node*temp;
+
+    printf("enter the no of elements");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        struct node*newnode=(struct node*)malloc(sizeof(struct node));
+        printf("enter the element to be inserted");
+        scanf("%d",&x);
+        newnode->data=x;
+        newnode->next=NULL;
+        temp=first;
+        if(first==NULL)
+            first=newnode;
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            temp->next=newnode;
+            printf("\n====inserted");
+        }
+    }
+
+   temp=first;
+   while(temp->next!=NULL)
+   {
+       temp=temp->next;
+       printf("%d ,",count);
+       count++;
+   }
+  // printf("\n ==========count=%d",count);
+   printf("enter the node no form last");
+   scanf("%d",&n);
+   m=(count-n)+1;
+   printf("m->%d",m);
+   if(m<0)
+   {
+       printf("wrong node number");
+   }
+   else
+   {
+       count=1;
+       temp=first;
+       while(count<m)
+       {
+           temp=temp->next;
+           count++;
+       }
+       printf("\n%d is the data present in %d node from end",temp->data,n);
+   }
+
+
+
+}
