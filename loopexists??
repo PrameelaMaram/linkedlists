@@ -1,0 +1,75 @@
+//program is written in such a way that there exists a loop from 3rd inserted element to last node
+#include<stdio.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*first=NULL;
+
+void main()
+{
+ int i,n,x,j=0,flag=1;
+    struct node*temp,*temp1,*slow,*fast;
+   printf("enter the no of elements");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        struct node*newnode=(struct node*)malloc(sizeof(struct node));
+        printf("enter the element to be inserted");
+        scanf("%d",&x);
+        newnode->data=x;
+        newnode->next=NULL;
+        temp=first;
+        if(first==NULL)
+            {first=newnode;
+            printf("\n inserted\n");
+            }
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            temp->next=newnode;
+            printf("\n====inserted\n");
+        }
+    }
+    //1->2->3->4->5->6->7->8->3
+    temp=first;
+    while(temp->next!=NULL)
+        temp=temp->next;
+        temp1=first;
+    while(j<2)
+    {
+        temp1=temp1->next;
+        j++;
+    }
+   // printf("%d-temp1data %d",temp1->data,temp->data);
+    //last->3 to make loop
+    temp->next=temp1;
+     slow=first;
+     fast=first;
+     while(slow->next!=NULL)
+     {
+         slow=slow->next;
+         fast=fast->next->next;
+         if(fast==slow)
+         {
+            flag=0;
+           // printf("loop exists");
+            break;
+         }
+         else
+            flag=1;
+     }
+     if(flag==0)
+     {
+         printf("loop exists");
+         printf("\n the starting node of loop is %d and end node is %d ",fast->next->next->data,slow->next->data);
+     }
+     else
+     printf("no loop");
+
+
+}
+
