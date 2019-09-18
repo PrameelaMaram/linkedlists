@@ -1,0 +1,69 @@
+#include<stdio.h>
+int s[30],mini[30],x,top=-1,top1=-1,min;
+void push();
+void pop();
+void getminimum();
+
+void main()
+{ int ch,c=1;
+while(c)
+  { printf("1.push\n2.pop\n3.getminimum\n");
+  printf("enter your choice");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+      case 1:push();break;
+      case 2:pop();break;
+      case 3:getminimum();break;
+      default:printf("invalid option");
+
+  }
+  printf(" enter 0 to quit");
+  scanf("%d",&c);
+  }
+
+
+}
+
+void push()
+{
+    int x;
+    if(top>29)
+        printf("stack overflow");
+    else
+    {
+       printf("enter the element to insert");
+       scanf("%d",&x);
+       s[++top]=x;
+       if(top==0)
+        min=x;
+       else
+       {
+           if(min>x)
+           {
+               min=x;
+               mini[++top1]=min;
+           }
+
+       }
+    }
+
+}
+
+void pop()
+{
+    int x,y;
+    if(top<=-1)
+        printf("stack underflow");
+    else
+    {x=s[top--];
+    printf("%d deleted from stack",x);
+    top1--;
+    }
+}
+void getminimum()
+{ if(top1<=-1)
+    printf("no element");
+    else
+    printf( "%d is minimum",mini[top1]);
+}
