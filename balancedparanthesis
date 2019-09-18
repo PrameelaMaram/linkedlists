@@ -1,0 +1,107 @@
+#include<stdio.h>
+char s[100];
+int top=-1,s1=0;
+char x;
+void push(char a,char s[]);
+char pop(char s[]);
+void main()
+{
+    char a[20];
+    int i,j;
+    printf("enter the expression");
+    scanf("%s",a);
+    for(i=0;a[i]!='\0';i++)
+    {
+        if(a[i]=='{'||a[i]=='('||a[i]=='[')
+            push(a[i],s);
+        if(a[i]=='}'||a[i]==')'||a[i]=='[')
+        {
+            if(a[i]==')')
+            { if(top<=-1)
+               {
+                   s1=0;
+                   goto a;
+               }
+               else
+               {
+                   x=pop(s);
+                   if(x=='(')
+                        s1=1;
+                   else
+                   {
+                       s1=0;
+                       goto a;
+                   }
+               }
+
+            }
+            if(a[i]=='}')
+            { if(top<=-1)
+               {
+                   s1=0;
+                   goto a;
+               }
+               else
+               {
+                   x=pop(s);
+                   if(x=='{')
+                        s1=1;
+                   else
+                   {
+                       s1=0;
+                       goto a;
+                   }
+               }
+
+
+        }
+        if(a[i]==']')
+            { if(top<=-1)
+               {
+                   s1=0;
+                   goto a;
+               }
+               else
+               {
+                   x=pop(s);
+                   if(x=='[')
+                        s1=1;
+                   else
+                   {
+                       s1=0;
+                       goto a;
+                   }
+               }
+            }
+
+            //else
+            //{
+              //  s1=0;goto a;
+            //
+
+
+
+
+
+            }
+    }
+    a:if(s1==0)
+    printf("not balanced");
+    else
+        printf("it is balanced");
+
+
+
+}
+
+
+void push(char a,char s[])
+{
+    s[++top]=a;
+
+}
+char pop(char s[])
+{
+    x=s[top--];
+    return x;
+}
